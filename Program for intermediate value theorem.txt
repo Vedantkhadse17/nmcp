@@ -1,0 +1,23 @@
+'Program for intermediate value theorem'
+def f(x):
+   return(x**3-5*x+1)
+    
+a=int(input('Enter the interval value of a\t'))
+b=int(input('Enter the interval value of b\t'))
+
+print('According to Intermediate value Theorem')
+if(f(a)*f(b)<0):
+    print('One or odd no. of roots lies in the interval [%d,%d]'%(a,b))
+else:
+    print('No root lies in the interval[%d,%d]'%(a,b))
+
+
+
+
+Output:
+
+
+Enter the interval value of a	0
+
+Enter the interval value of b	1
+One or odd no. of roots lies in the interval [0,1]

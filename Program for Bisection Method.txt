@@ -1,0 +1,23 @@
+" Program for Bisection Method"
+import math
+
+def f(x):
+    return(math.cos(x)-x*math.exp(x))
+
+n= int(input("Enter no. of iterations\t"))
+a=float(input("Enter the 1st value of interval\t"))
+b=float(input("Enter the 2nd value of interval\t"))
+
+i=0
+while(i<n):
+    print("Applying %d iteration of Bisection Method\n"%(i+1))
+    m=(a+b)/2
+    if(f(a)*f(m)<0):
+        b=m
+    else:
+        a=m
+    
+    print("The new interval is [%f,%f]"%(a,b))
+    i=i+1
+    
+print("The iterations ended")

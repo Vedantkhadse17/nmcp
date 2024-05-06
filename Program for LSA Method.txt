@@ -1,0 +1,73 @@
+"Program for LSA Method"
+import numpy as np
+import sympy as sy
+
+n=int(input("Enter No. of Entires \t"))
+
+print("\n Enter Values of x \n")
+x=[float(input())for i in range(n)]
+
+print("\n Enter Values of y \n")
+y=[float(input())for i in range(n)]
+
+x=np.array(x)
+y=np.array(y)
+
+x2=x*x
+x3=x2*x
+x4=x3*x
+xy=x*y
+x2y=x2*y
+
+Sx=0
+for i in x:
+    Sx=Sx+i
+
+Sy=0
+for i in y:
+    Sy=Sy+i
+    
+Sx2=0
+for i in x2:
+    Sx2=Sx2+i
+    
+Sx3=0
+for i in x3:
+    Sx3=Sx3+i
+    
+Sx4=0
+for i in x4:
+    Sx4=Sx4+i
+
+Sxy=0
+for i in xy:
+    Sxy=Sxy+i
+
+Sx2y=0
+for i in x2y:
+    Sx2y=Sx2y+i
+    
+    
+order=int(input("Enter the Order of LSA (1 or 2)"))
+
+a=sy.symbols('a')
+b=sy.symbols('b')
+c=sy.symbols('c')
+
+
+
+if(order==1):
+    print("\nSolving for 1st order LSA\n")
+    eq1=sy.Eq(n*a+b*Sx,Sy)
+    eq2=sy.Eq(a*Sx+b*Sx2,Sxy)
+    sol=sy.solve((eq1,eq2),(a,b))
+elif(order==2):
+    print("\nSolving for 2nd order LSA\n")
+    eq1=sy.Eq(n*a+b*Sx+c*Sx2,Sy)
+    eq2=sy.Eq(a*Sx+b*Sx2+c*Sx3,Sxy)
+    eq3=sy.Eq(a*Sx2+b*Sx3+c*Sx4,Sx2y)
+    sol=sy.solve((eq1,eq2,eq3),(a,b,c))
+else:
+    print("\n Wrong Order Enetered\n")
+
+print(sol)

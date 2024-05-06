@@ -1,0 +1,40 @@
+"Program for Newton Forward Difference Interpolation"
+import numpy as np
+n=int(input("Enter the no. of observation (not more than 5)\t"))
+
+NFDT=np.array([[0 for x in range(n+1)]for y in range(n)])
+
+
+i=0
+while(i<n):
+    print("Enter the value of x%d\t"%i)
+    NFDT[i][0]=float(input())
+    print("Enter the value of y%d\t"%i)
+    NFDT[i][1]=float(input())
+    i=i+1
+    
+nn=n
+j=2
+while(j<n+1):
+    i=0
+    while(i<nn-1):
+        NFDT[i][j]=NFDT[i+1][j-1]-NFDT[i][j-1]
+        i=i+1
+    j=j+1
+    nn=nn-1
+print(NFDT)
+
+
+x=float(input("Enter the value of x for which y is to be calculated"))
+
+i=0
+while(i<n):
+    if(NFDT[i][0]<x):
+        r=NFDT[i][0]
+    i=i+1
+
+h=NFDT[1][0]-NFDT[0][0]
+u=(x-NFDT[0][0])/h
+y=NFDT[r][1]+u*NFDT[r][2]+u*(u-1)/2*NFDT[r][3]+u*(u-1)*(u-2)/6*NFDT[r][4]+u*(u-1)*(u-2)*(u-3)/24*NFDT[r][5]
+
+print("The value of y at x=%f is %f"%(x,y))

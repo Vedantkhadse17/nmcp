@@ -1,0 +1,35 @@
+"Program for 4th Order R K Method"
+
+def dydx(x, y):
+    return (x+y)
+ 
+
+x0 = float(input("Enter the intial value of x \t"))
+y0 = float(input("Enter the intial value of y \t"))
+x = float(input("Enter the value of x for which y is to be calculated \t"))
+h = float(input("Enter the value of step size h \t"))
+
+
+n = int((x - x0)/h)
+
+for i in range(1, n + 1):
+    "Apply Runge Kutta Formulas to find next value of y"
+    k1 = h * dydx(x0, y0)
+    k2 = h * dydx(x0 + 0.5 * h, y0 + 0.5 * k1)
+    k3 = h * dydx(x0 + 0.5 * h, y0 + 0.5 * k2)
+    k4 = h * dydx(x0 + h, y0 + k3)
+ 
+    k=(1.0 / 6.0)*(k1 + 2 * k2 + 2 * k3 + k4)
+   
+    y1 = y0 + k 
+ 
+    
+    x1 = x0 + h
+    
+    x0=x1
+    y0=y1
+    
+    print("Applying %d iteration \n"%i)
+    print("The vaule of y%d at x%d = %f is %f"%(i,i,x1,y1))
+
+print("The value of y at x=%f is %f"%(x,y1))
